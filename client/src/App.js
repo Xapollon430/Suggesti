@@ -13,6 +13,8 @@ import arrow from "./arrow.png";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 
+import Button from "@mui/material/Button";
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const chartOne = {
@@ -128,6 +130,32 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function DrawerAppBar() {
   const [showSecond, setShowSecond] = React.useState(false);
 
+  const [cheap, setCheap] = React.useState(false);
+  const [eco, setEco] = React.useState(false);
+  const [quality, setQuality] = React.useState(false);
+  const [custom, setCustom] = React.useState(false);
+
+  console.log(cheap, eco, quality);
+
+  function handleChange(event) {
+    fetch(`http://localhost:4000/create-portal-session`, {
+      method: "POST",
+      body: JSON.stringify({ cheap, eco, quality, custom }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        window.location = res.url;
+      })
+      .catch(function (res) {
+        console.log(res);
+      });
+  }
+
   return showSecond ? (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -183,15 +211,36 @@ export default function DrawerAppBar() {
         <S.FormWrapper>
           <S.CheckWrapper>
             <Typography variant="h6">Cheaper</Typography>
-            <Checkbox {...label} defaultChecked size="medium" />
+            <Checkbox
+              {...label}
+              onChange={() => {
+                setCheap(!cheap);
+              }}
+              value={cheap}
+              size="medium"
+            />
           </S.CheckWrapper>
           <S.CheckWrapper>
             <Typography variant="h6">Eco-Friendly</Typography>
-            <Checkbox {...label} defaultChecked size="medium" />
+            <Checkbox
+              {...label}
+              onChange={() => {
+                setEco(!eco);
+              }}
+              value={eco}
+              size="medium"
+            />
           </S.CheckWrapper>
           <S.CheckWrapper>
             <Typography variant="h6">Better Quality</Typography>
-            <Checkbox {...label} defaultChecked size="medium" />
+            <Checkbox
+              {...label}
+              onChange={() => {
+                setQuality(!quality);
+              }}
+              value={quality}
+              size="medium"
+            />
           </S.CheckWrapper>
 
           <S.TextBox>
@@ -199,8 +248,15 @@ export default function DrawerAppBar() {
               id="outlined-basic"
               label="Outlined"
               variant="outlined"
+              onChange={(e) => {
+                setCustom(e.target.value);
+              }}
             />
           </S.TextBox>
+          <Button variant="contained" component="label" fullWidth>
+            Upload CSV
+            <input type="file" hidden />
+          </Button>
         </S.FormWrapper>
       </S.SecondWrapper>
     </Box>

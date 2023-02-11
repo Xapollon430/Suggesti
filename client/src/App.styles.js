@@ -1,4 +1,3 @@
-import { display } from "@mui/system";
 import styled from "styled-components";
 
 export const LandingWrapper = styled.div`
@@ -38,8 +37,9 @@ export const FormWrapper = styled.div`
   width: 400px;
   border-radius: 10px;
   background-color: white;
-  height: 600px;
+  height: 400px;
   border: 2px solid grey;
+  padding-top: 50px;
 `;
 
 export const CheckWrapper = styled.div`
@@ -52,5 +52,5 @@ export const CheckWrapper = styled.div`
 export const TextBox = styled.div`
   display: grid;
 
-  margin: 0px 10px 0px 10px;
+  margin: 0px 10px 10px 10px;
 `;

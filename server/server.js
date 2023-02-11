@@ -14,16 +14,6 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-// const response = await openai.createCompletion({
-//   model: "text-davinci-003",
-//   prompt: prompt,
-//   temperature: 0.7,
-//   max_tokens: 3000,
-//   top_p: 1,
-//   frequency_penalty: 0,
-//   presence_penalty: 0,
-// });
-
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -32,8 +22,20 @@ app.get("/", (req, res) => {
   res.send("Hello World!!");
 });
 
-app.get("/insights", (req, res) => {
-  
+app.post("/insights", (req, res) => {
+  const { cheap, eco, quality, custom } = req.body;
+
+  console.log(cheap, eco, quality, custom);
+
+  // const response = await openai.createCompletion({
+  //   model: "text-davinci-003",
+  //   prompt: prompt,
+  //   temperature: 0.7,
+  //   max_tokens: 3000,
+  //   top_p: 1,
+  //   frequency_penalty: 0,
+  //   presence_penalty: 0,
+  // });
 });
 
 app.listen(port, () => {
