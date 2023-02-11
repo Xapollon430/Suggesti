@@ -7,125 +7,91 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as S from "./App.styles";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
-import arrow from "./arrow.png";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 
 import Button from "@mui/material/Button";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
-
-const chartOne = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-
-const chartTwo = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-
-const chartThree = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-
-const chartFour = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+const labels = [""];
+
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: "Starbucks",
+      data: [222, 333],
+      backgroundColor: "red",
+    },
+    {
+      label: "Gimme! Coffee",
+      data: [666, 999],
+      backgroundColor: "green",
+    },
+    {
+      label: "Shell",
+      data: [222, 333],
+      backgroundColor: "red",
+    },
+    {
+      label: "BP",
+      data: [666, 999],
+      backgroundColor: "green",
+    },
+    {
+      label: "Target",
+      data: [222, 333],
+      backgroundColor: "red",
+    },
+    {
+      label: "Value Village",
+      data: [666, 999],
+      backgroundColor: "green",
+    },
+    {
+      label: "KFC",
+      data: [222, 333],
+      backgroundColor: "red",
+    },
+    {
+      label: "Chipotle",
+      data: [666, 777],
+      backgroundColor: "green",
+    },
+  ],
+};
+
+const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    title: {
+      display: true,
+      text: "Chart.js Bar Chart",
+    },
+  },
+};
 
 export default function DrawerAppBar() {
   const [showSecond, setShowSecond] = React.useState(false);
@@ -135,10 +101,9 @@ export default function DrawerAppBar() {
   const [quality, setQuality] = React.useState(false);
   const [custom, setCustom] = React.useState(false);
 
-  console.log(cheap, eco, quality);
-
   function handleChange(event) {
-    fetch(`http://localhost:4000/create-portal-session`, {
+    console.log(123);
+    fetch(`http://localhost:4000/insights`, {
       method: "POST",
       body: JSON.stringify({ cheap, eco, quality, custom }),
       headers: {
@@ -149,7 +114,7 @@ export default function DrawerAppBar() {
         return res.json();
       })
       .then((res) => {
-        window.location = res.url;
+        console.log(res);
       })
       .catch(function (res) {
         console.log(res);
@@ -189,23 +154,9 @@ export default function DrawerAppBar() {
       <S.SecondWrapper>
         <div>
           <Typography variant="h3">Welcome, John.</Typography>
-          <Typography variant="h5">Last Months Suggestions:</Typography>
 
           <S.ChartsWrapper>
-            <S.ChartWrapper>
-              <Pie data={chartOne} />
-            </S.ChartWrapper>
-            <S.Arrow src={arrow} />
-            <S.ChartWrapper>
-              <Pie data={chartTwo} />
-            </S.ChartWrapper>
-            <S.ChartWrapper>
-              <Pie data={chartThree} />
-            </S.ChartWrapper>
-            <S.Arrow src={arrow} />
-            <S.ChartWrapper>
-              <Pie data={chartFour} />
-            </S.ChartWrapper>
+            <Bar options={options} data={data} />
           </S.ChartsWrapper>
         </div>
         <S.FormWrapper>
@@ -255,7 +206,13 @@ export default function DrawerAppBar() {
           </S.TextBox>
           <Button variant="contained" component="label" fullWidth>
             Upload CSV
-            <input type="file" hidden />
+            <input
+              type="file"
+              hidden
+              onChange={() => {
+                handleChange();
+              }}
+            />
           </Button>
         </S.FormWrapper>
       </S.SecondWrapper>
