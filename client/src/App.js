@@ -153,7 +153,7 @@ export default function DrawerAppBar() {
 
   function handleChange(event) {
     setLoading(true);
-    fetch(`http://localhost:4000/insights`, {
+    fetch(`https://fern-boilerplate.vercel.app/insights`, {
       method: "POST",
       body: JSON.stringify({ cheap, eco, quality, custom }),
       headers: {
