@@ -24,6 +24,7 @@ export const ChartWrapper = styled.div`
 export const ChartsWrapper = styled.div`
   height: 300px;
   width: 600px;
+  margin-top: 20px;
 `;
 
 export const Arrow = styled.img`
